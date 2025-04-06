@@ -1,0 +1,15 @@
+#!/bin/bash
+
+APP="./Coinomi"
+
+export _JAVA_OPTIONS="-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=9050"
+
+$APP &
+APP_PID=$!
+wait $APP_PID
+
+mkdir -p /live/persistence/TailsData_unlocked/dotfiles/.cache
+mkdir -p /live/persistence/TailsData_unlocked/dotfiles/.local/share
+cp -r /home/amnesia/.cache/Coinomi /live/persistence/TailsData_unlocked/dotfiles/.cache/
+cp -r /home/amnesia/.local/share/Coinomi /live/persistence/TailsData_unlocked/dotfiles/.local/share/
+
