@@ -2,14 +2,20 @@
 
 APP="./Coinomi"
 
+mkdir -p /home/amnesia/Persistent/.data/.cache/Coinomi
+mkdir -p /home/amnesia/Persistent/.data/.local/share/Coinomi
+cp -r /home/amnesia/Persistent/.data/.cache/Coinomi /home/amnesia/.cache/
+cp -r /home/amnesia/Persistent/.data/.local/share/Coinomi /home/amnesia/.local/share/
+
 export _JAVA_OPTIONS="-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=9050"
 
-$APP &
-APP_PID=$!
-wait $APP_PID
+function storeData {
+	cp -r /home/amnesia/.cache/Coinomi /home/amnesia/Persistent/.data/.cache/
+	cp -r /home/amnesia/.local/share/Coinomi /home/amnesia/Persistent/.data/.local/share/
+}
 
-mkdir -p /live/persistence/TailsData_unlocked/dotfiles/.cache
-mkdir -p /live/persistence/TailsData_unlocked/dotfiles/.local/share
-cp -r /home/amnesia/.cache/Coinomi /live/persistence/TailsData_unlocked/dotfiles/.cache/
-cp -r /home/amnesia/.local/share/Coinomi /live/persistence/TailsData_unlocked/dotfiles/.local/share/
+trap storeData EXIT
+$APP
+
+
 
