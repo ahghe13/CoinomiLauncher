@@ -5,7 +5,7 @@
 - Store Coinomi's data in persistent storage to avoid losing changes on reboot
 
 ### Setup guide ###
-- Install Tail OS, configure persistent storage and enable dotfiles feature
+- Install Tail OS, configure persistent storage (no need to configure dotfiles)
 - Download Coinomi and place it in the persistent storage folder
 - Place this Launcher in the same folder as the Coinomi executable
 - Start the launcher! (you might need to chmod it first: `chmod +x Launcher.script`)
